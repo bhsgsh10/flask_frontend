@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block header %}
+{{super()}}
+<script>
+        var fruits = {{fruits|tojson}} 
+</script>
+<script type="text/javascript" src="{{ url_for('static',filename='addItem.js') }}"></script>
+<style>
+    #fruit_description{
+        height: 100px;
+    }
+    #fruit_name_label{
+        margin-top: 10px;
+    }
+    label{
+        font-weight: bold;
+    }
+    .form-control{
+        background-color: rgb(249, 242, 214);
+        border: 1px solid rgb(249, 213, 83);
+    }
+    .btn-primary{
+        background-color: rgb(240, 180, 55);
+        border: 1px solid rgb(249, 213, 83);
+    }
+
+</style>
+    
+{% endblock %}
+
+{% block content %}
+<div>
+    <form>
+        <div class="form-group">
+          <label for="fruit_name" id="fruit_name_label">Name of fruit</label>
+          <input type="text" class="form-control" id="fruit_name">
+        </div>
+        <div class="form-group">
+          <label for="season">Season</label>
+          <input type="text" class="form-control" id="season">
+        </div>
+        <div class="form-group">
+            <label for="price" id="price_label">Price/oz</label>
+            <input type="number" class="form-control" id="price" min="0">
+        </div>
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="vit_a" value="off">
+            <label class="custom-control-label" for="vit_a">Does this fruit contain Vitamin A?</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="vit_c" value="off">
+            <label class="custom-control-label" for="vit_c">Does this fruit contain Vitamin C?</label>
+        </div>
+        <div class="form-group">
+            <label for="image_url">Image URL</label>
+            <input type="url" class="form-control" id="image_url">
+          </div>
+          <div class="form-group" id="fruits">
+            <label for="fruit_description">Description</label>
+            <input type="text" class="form-control" id="fruit_description">
+          </div>
+        <button type="button" class="btn btn-primary" id="submit_item">Submit</button>
+    </form>
+</div>
+{% endblock %}
